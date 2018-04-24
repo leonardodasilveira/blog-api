@@ -1,0 +1,22 @@
+version: '3'
+
+services: 
+  api:
+    container_name: blog-api
+    build: .
+    restart: always
+    ports: 
+      - 3000:3000
+    volumes: 
+      - .:/usr/src/app
+    links: 
+      - mongo
+    depends_on: 
+      - mongo
+
+  mongo:
+    container_name: blog-mongo
+    image: mongo
+    restart: always
+    ports: 
+      - 27017:27017
